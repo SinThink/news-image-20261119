@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>The Daily Ledger - 19 November 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1024px; height: 1024px; overflow: hidden; }
+  body {
+    font-family: 'Liberation Serif', Georgia, serif;
+    background: #e9e4d8;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 1024px; height: 1024px;
+    padding: 20px 24px 16px 24px;
+    display: flex; flex-direction: column;
+    background: #e9e4d8;
+    border: 3px solid #1f1f1f;
+  }
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead { border-bottom: 4px solid #1a1a1a; padding-bottom: 8px; flex: none; }
+  .mh-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 12px; letter-spacing: 1.2px; color: #444;
+    text-transform: uppercase;
+  }
+  .mh-title {
+    font-family: 'Liberation Serif', Georgia, serif;
+    font-weight: bold;
+    font-size: 62px; line-height: 1.14;
+    text-align: center; letter-spacing: 2px;
+    margin: 2px 0 2px 0;
+  }
+  .mh-date-row {
+    display: flex; justify-content: center; align-items: center; gap: 14px;
+  }
+  .mh-date {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-weight: bold; font-size: 23px; letter-spacing: 3.5px;
+    color: #ffffff; background: #8b1a1a;
+    padding: 5px 22px;
+  }
+  .mh-rule { flex: 1; height: 1px; background: #8b1a1a; }
+
+  /* ---------- LEAD ---------- */
+  .lead {
+    display: flex; gap: 18px; flex: none;
+    border-bottom: 3px solid #1a1a1a; padding: 12px 0 12px 0;
+  }
+  .lead-main { flex: 1.6; display: flex; flex-direction: column; }
+  .kicker {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 12px; font-weight: bold; letter-spacing: 2.2px;
+    text-transform: uppercase; color: #ffffff;
+    background: #8b1a1a; align-self: flex-start;
+    padding: 3px 11px; margin-bottom: 7px;
+  }
+  .lead-hl {
+    font-family: 'Liberation Serif', Georgia, serif;
+    font-size: 41px; font-weight: bold; line-height: 1.09;
+    margin-bottom: 8px;
+  }
+  .lead-dek {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 15.5px; line-height: 1.4; color: #2b2b2b;
+  }
+  .lead-dek b { color: #000; }
+  .lead-art {
+    flex: 1; border: 2px solid #1a1a1a;
+    display: flex; flex-direction: column; background: #f2eee2;
+  }
+  .art-visual {
+    flex: 1; position: relative; overflow: hidden;
+    background: #a8c6e2;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .summit-globe {
+    width: 150px; height: 150px; border-radius: 50%;
+    background: radial-gradient(circle at 34% 28%, #eef7fd 0%, #7fb0d8 55%, #2e5a86 100%);
+    border: 3px solid #24435f;
+    position: relative; margin-bottom: 8px;
+  }
+  .summit-globe .lat { position: absolute; left: 0; right: 0; height: 2px; background: rgba(255,255,255,.5); }
+  .flag-row {
+    position: absolute; left: 0; right: 0; bottom: 12px;
+    display: flex; justify-content: center; gap: 9px;
+  }
+  .flag { width: 38px; height: 25px; border: 1px solid #1a1a1a; }
+  .flag-usa { background: repeating-linear-gradient(#b22234 0 3.5px, #fff 3.5px 7px); position: relative; }
+  .flag-usa::after { content:''; position: absolute; left:0; top:0; width: 18px; height: 14px; background:#3c3b6e; }
+  .flag-chn { background: #de2910; position: relative; }
+  .flag-chn::after { content:'\2605'; color:#ffde00; font-size: 15px; position:absolute; left:4px; top:2px; line-height:1; }
+  .flag-rus { background: linear-gradient(#fff 0 33.3%, #0039a6 33.3% 66.6%, #d52b1e 66.6%); }
+  .art-caption {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 12px; font-weight: bold; text-align: center;
+    padding: 6px 4px; background: #f2eee2; color: #2b2b2b;
+    border-top: 2px solid #1a1a1a; letter-spacing: .5px;
+  }
+
+  /* ---------- BAND (second lead) ---------- */
+  .band {
+    flex: none; display: flex; gap: 18px; align-items: flex-start;
+    background: #efe9d9; border-bottom: 3px solid #1a1a1a;
+    border-left: 9px solid #5b3a8c;
+    padding: 10px 14px 10px 14px;
+  }
+  .band-l { flex: 1.15; }
+  .band-r { flex: 1; border-left: 1px solid #b9b09a; padding-left: 16px; }
+  .tag {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 11.5px; font-weight: bold; letter-spacing: 2px;
+    text-transform: uppercase; color: #fff;
+    display: inline-block; padding: 2px 9px; margin-bottom: 5px;
+  }
+  .tag-court { background: #5b3a8c; }
+  .tag-war   { background: #7a4a12; }
+  .tag-city  { background: #3d3d3d; }
+  .tag-power { background: #2e6b2e; }
+  .tag-money { background: #8b6d0b; }
+  .band-hl {
+    font-family: 'Liberation Serif', Georgia, serif;
+    font-size: 30px; font-weight: bold; line-height: 1.12;
+  }
+  .band-dek {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 15px; line-height: 1.45; color: #2b2b2b;
+    padding-top: 22px;
+  }
+  .band-dek b, .cell-dek b { color: #000; }
+
+  /* ---------- GRID ---------- */
+  .grid {
+    flex: 1; display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .cell { padding: 12px 18px 6px 0; display: flex; flex-direction: column; }
+  .cell:nth-child(odd)  { border-right: 2px solid #1a1a1a; padding-right: 18px; }
+  .cell:nth-child(even) { padding-left: 18px; }
+  .cell:nth-child(1), .cell:nth-child(2) { border-bottom: 2px solid #1a1a1a; }
+  .cell-hl {
+    font-family: 'Liberation Serif', Georgia, serif;
+    font-size: 30px; font-weight: bold; line-height: 1.14;
+    margin: 3px 0 7px 0;
+  }
+  .cell-dek {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    font-size: 15.5px; line-height: 1.46; color: #2b2b2b;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ================= MASTHEAD ================= -->
+  <div class="masthead">
+    <div class="mh-top">
+      <span>World Edition</span>
+      <span>Vol. CXII &middot; No. 323</span>
+      <span>Seven continents &middot; One page</span>
+    </div>
+    <div class="mh-title">THE DAILY LEDGER</div>
+    <div class="mh-date-row">
+      <span class="mh-rule"></span>
+      <span class="mh-date">19 NOVEMBER 2026</span>
+      <span class="mh-rule"></span>
+    </div>
+  </div>
+
+  <!-- ================= LEAD ================= -->
+  <div class="lead">
+    <div class="lead-main">
+      <div class="kicker">APEC &middot; Shenzhen</div>
+      <div class="lead-hl">TRUMP, XI AND PUTIN HOLD FIRST THREE-WAY SUMMIT</div>
+      <div class="lead-dek">
+        The three leaders met for <b>90 minutes</b> in Shenzhen and issued a four-point
+        &ldquo;peace declaration&rdquo;: <b>UN reform</b>, more <b>refined-fuel supply</b>,
+        and the pledge that &ldquo;a nuclear war cannot be won and must never be
+        fought,&rdquo; plus talks on nuclear risk. It said <b>nothing about Ukraine or
+        Iran</b> and set <b>no timetable</b>.
+      </div>
+    </div>
+    <div class="lead-art">
+      <div class="art-visual">
+        <div class="summit-globe">
+          <div class="lat" style="top:26px;"></div>
+          <div class="lat" style="top:58px;"></div>
+          <div class="lat" style="top:90px;"></div>
+          <div class="lat" style="top:122px;"></div>
+        </div>
+        <div class="flag-row">
+          <div class="flag flag-usa"></div>
+          <div class="flag flag-chn"></div>
+          <div class="flag flag-rus"></div>
+        </div>
+      </div>
+      <div class="art-caption">FIRST-EVER MEETING OF THE THREE &middot; APEC, SHENZHEN</div>
+    </div>
+  </div>
+
+  <!-- ================= SECOND LEAD ================= -->
+  <div class="band">
+    <div class="band-l">
+      <span class="tag tag-court">World Court</span>
+      <div class="band-hl">WORLD COURT: MYANMAR RESPONSIBLE OVER ROHINGYA</div>
+    </div>
+    <div class="band-r">
+      <div class="band-dek">
+        Landmark ICJ ruling &mdash; the first time a <b>state</b> is held responsible for
+        the 2017 campaign against the Rohingya. <b>Thousands were killed</b>; sexual
+        violence was widespread. Brought by <b>Gambia</b>; final, with no appeal.
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GRID ================= -->
+  <div class="grid">
+
+    <div class="cell">
+      <span class="tag tag-war">Ukraine</span>
+      <div class="cell-hl">UKRAINE HITS KERCH BRIDGE A THIRD TIME IN FOUR DAYS</div>
+      <div class="cell-dek">
+        A strike on the <b>railway section</b> halted train traffic; no casualties
+        were reported. The road span had already <b>collapsed on 17 November</b>.
+      </div>
+    </div>
+
+    <div class="cell">
+      <span class="tag tag-city">Riyadh</span>
+      <div class="cell-hl">ATTACK DAMAGES PIF TOWER IN RIYADH</div>
+      <div class="cell-dek">
+        Saudi Arabia&rsquo;s <b>tallest skyscraper</b> and home of its sovereign wealth
+        fund: windows blown out across <b>7&ndash;8 floors</b>, the facade bent,
+        <b>no injuries</b>. The second strike on the financial district in under two
+        weeks, after the Aramco building on 8 Nov.
+      </div>
+    </div>
+
+    <div class="cell">
+      <span class="tag tag-power">Bangladesh</span>
+      <div class="cell-hl">FOUR DEAD AS UNREST SWEEPS BANGLADESH</div>
+      <div class="cell-dek">
+        An Awami League lockdown, blasts in Dhaka and violence in <b>28 of 64
+        districts</b>. The family home of <b>Muhammad Yunus</b> was set on fire and
+        Grameen Bank branches were attacked.
+      </div>
+    </div>
+
+    <div class="cell">
+      <span class="tag tag-money">Markets</span>
+      <div class="cell-hl">ANTHROPIC IPO BREAKS RECORD AT $81.3 BILLION</div>
+      <div class="cell-dek">
+        Priced at <b>$83</b> for <b>980 million shares</b> and listed on Nasdaq as
+        <b>ANT</b> on 19 Nov, valuing it near <b>$1.5 trillion</b>. It opened at
+        <b>$111.50</b> and closed at <b>$97.17</b>.
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
